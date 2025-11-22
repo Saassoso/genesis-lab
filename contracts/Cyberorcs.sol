@@ -66,42 +66,26 @@ constructor(string memory name_,string memory symbol_,uint256 maxSupply_,address
 
     function burn(uint256 amount) public returns (bool) {
         require(balance[msg.sender] >= amount, "Cyberorcs: Low Balance");
-
         balance[msg.sender] -= amount;
         totalSupply -= amount;
-
         emit Transfer(msg.sender, address(0), amount);
         return true;
     }
 
-    function approve(address spender, uint256 value)
-        public
-        returns (bool)
-    {
+    function approve(address spender, uint256 value) public returns (bool) {
         require(spender != address(0), "CyberOrcs: Zero Address");
-
         _allowance[msg.sender][spender] = value;
-
         emit Approval(msg.sender, spender, value);
         return true;
     }
 
-    function allowance(address owner, address spender)
-        public
-        view
-        returns (uint256)
-    {
+    function allowance(address owner, address spender) public view returns (uint256) {
         return _allowance[owner][spender];
     }
 
-    function transferFrom(
-        address from,
-        address to,
-        uint256 value
-    ) public returns (bool) {
+    function transferFrom(address from, address to, uint256 value) public returns (bool) {
         require(balance[from] >= value, "Cyberorcs: Low Balance");
         require(_allowance[from][msg.sender] >= value, "Cyberorcs: Low Allowance");
-
         balance[from] -= value;
         balance[to] += value;
 
