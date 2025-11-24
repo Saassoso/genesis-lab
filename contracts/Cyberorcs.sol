@@ -22,7 +22,6 @@ constructor(string memory name_,string memory symbol_,uint256 maxSupply_,address
     totalSupply = maxSupply_;
 }
 
-
     function name() public view returns (string memory) {
         return NAME;
     }
