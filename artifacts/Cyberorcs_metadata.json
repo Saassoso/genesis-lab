@@ -364,11 +364,11 @@
 	},
 	"sources": {
 		"contracts/Cyberorcs.sol": {
-			"keccak256": "0x2673ebf1b877bbf39f390bb8f753ba9d580790363da73f6f3a7a731d1747d37d",
+			"keccak256": "0x54833f03ee5cb612b164669f17f01d34750187ca81e34735ad24a7adbb06bf70",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://edb3c2aad59e7f694384cabe93b58ca92d14ca28f9ba3e4e7aca22d8712de287",
-				"dweb:/ipfs/QmZMamnv3VrG8cf9EnypmqYE7JzbCimt9QNCNoYt7QwuHV"
+				"bzz-raw://23aca92975ab7c9f5e6fea0a0968f55588baffd9217a121ebf18234d4cf7c398",
+				"dweb:/ipfs/QmfHotA2jfB6szgvzPFeopoLy8s4ofevPMukpg8V65cEso"
 			]
 		},
 		"contracts/Interface/ICyberorcs.sol": {
