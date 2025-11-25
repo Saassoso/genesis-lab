@@ -4,6 +4,7 @@
 This project implements the Cyberorcs ERC20 token. It includes functionality for minting, burning, and treasury management.
 
 - [CyberOrcs.sol](../contracts/Cyberorcs.sol)
+- [ICyberOrcs.sol](../contracts/Interface/ICyberorcs.sol)
 
 ## Test 
 First We Compile the Smart-Contract
