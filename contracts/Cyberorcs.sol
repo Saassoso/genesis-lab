@@ -26,11 +26,14 @@ contract Cyberorcs is ICyberorcs {
 
         minter = msg.sender; // deployer is initial minter
 
-        // Mint all tokens to treasury initially
-        _balance[treasury] = maxSupply_;
-        totalSupply = maxSupply_;
+        // Mint all tokens to treasury initially : didnt work
+        // Only mint 50% initially so the mint function works later
+        uint256 initialMint = maxSupply_ / 2; 
+        
+        _balance[treasury] = initialMint;
+        totalSupply = initialMint;
 
-        emit Transfer(address(0), treasury, maxSupply_);
+        emit Transfer(address(0), treasury, initialMint);
     }
 
     // ---------------- Metadata functions ----------------
