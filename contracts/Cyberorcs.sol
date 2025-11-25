@@ -4,6 +4,7 @@ pragma solidity ^0.8.30;
 import "contracts/Interface/ICyberorcs.sol";
 
 contract Cyberorcs is ICyberorcs {
+    
     string private NAME;
     string private SYMBOL;
     uint256 public immutable MAX_SUPPLY;

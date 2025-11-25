@@ -1,0 +1,97 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_operator",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC721Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"onERC721Received(address,address,uint256,bytes)": {
+					"details": "The ERC721 smart contract calls this function on the recipient  after a `transfer`. This function MAY throw to revert and reject the  transfer. Return of other than the magic value MUST result in the  transaction being reverted.  Note: the contract address is always the message sender.",
+					"params": {
+						"_data": "Additional data with no specified format",
+						"_from": "The address which previously owned the token",
+						"_operator": "The address which called `safeTransferFrom` function",
+						"_tokenId": "The NFT identifier which is being transferred"
+					},
+					"returns": {
+						"_0": "`bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`  unless throwing"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"onERC721Received(address,address,uint256,bytes)": {
+					"notice": "Handle the receipt of an NFT"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Interface/IERC721Receiver.sol": "IERC721Receiver"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Interface/IERC721Receiver.sol": {
+			"keccak256": "0x9633a8ec33613353c31b7ad14e62c58aa9bb0e81c5f6db8035d273a833f9e58b",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://8c4e6bded6f59095b02807e2f4561aec0689cf2426678fd6459f62271253bd56",
+				"dweb:/ipfs/QmY91yR5vKd3Qxg52aRfvw74LjLsB1BdzQAr9HNmdeo3BM"
+			]
+		}
+	},
+	"version": 1
+}
