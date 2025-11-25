@@ -7,7 +7,9 @@ This project implements the Cyberorcs ERC20 token. It includes functionality for
 
 ## Test 
 First We Compile the Smart-Contract
+
 ![alt text](./attachments/00-Compile.png)
+
 ### Setup Before Deployment
 
 
