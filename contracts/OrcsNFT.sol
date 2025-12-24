@@ -15,12 +15,21 @@ contract OrcsNFT is IOrcsNFT {
     mapping (uint256 => address) private _operators;
     mapping (address => mapping (address => bool)) private _approvedForAll;
 
+    constructor {
+
+    }
+
+    //TODO mint function
+    //TODO Access control
+    //TODO tokenURI: tokenId -> carachteristics (off-chain. uri/url)
+
     function balanceOf(address _owner) public view returns (uint256){
         return _balances[_owner];
     }
 
     function ownerOf(uint256 _tokenId) public view returns (address){
         return _owners[_tokenId];
+        require(owner != address)
     }
 
     function getApproved(uint256 _tokenId) public view returns (address){
