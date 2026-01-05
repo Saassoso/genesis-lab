@@ -2,34 +2,94 @@
 pragma solidity ^0.8.30;
 
 import "contracts/Interface/IOrcsNFT.sol";
-
+import "contracts/Interface/IMetadata.sol";
 import {IERC721Receiver} from "contracts/Interface/IERC721Receiver.sol";
+import "contracts/Ownable.sol";
 
-contract OrcsNFT is IOrcsNFT {
 
-    string public name;
-    string public symbol;
+contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
 
+    string public name; // function name() view external returns (string memory);
+    string public symbol; // function symbol() view external returns (string memory);
+    string public baseUri; // function baseUri() view external returns (string memory);
+
+    mapping (address => uint256) public myBalances; //funtion myBalances(address owner ) view public (uint256);
     mapping (address => uint256) private _balances;
     mapping (uint256 => address) private _owners;
     mapping (uint256 => address) private _operators;
     mapping (address => mapping (address => bool)) private _approvedForAll;
+    mapping (uint256 => string) public tokenURI;
 
-    constructor {
+    //mapping (address => mapping (address => bool)) private myApprovedForAll; // function myApprovedForAll(address owner, address spender) view public returns(bool);
+    //mapping (address => mapping (address => mapping (address => booll)) 
 
+    /*function myApprovedForAll(address owner, address spender) view public returns(bool){
+        return _approvedForAll[spender][owner];
+    }*/
+
+    constructor (string memory _name, string memory _symbol,address _initialOwner) Ownable(_initialOwner) {
+        name = _name;
+        symbol = _symbol;
+    }
+    
+    //TODO tokenURI: tokenId -> carachteristics (off-chain. uri/url)\
+    
+    function tokenUri(uint256 _tokenId) public view returns (string memory){
+        //require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
+        address owner = _owners[_tokenId];
+        require(owner != address(0), "OrcsNFT: NFT Doeant Exist");
+        
+        return string.concat(
+            baseTokenURI,
+            Strings.toString(_tokenId)
+        );
+    }
+    
+
+    event TokenURIAdded(uint256 _tokenId, string _tokenURI);
+
+    function setTokenUri(uint256 _tokenId, string calldata _tokenURI) public onlyOwner {
+        tokenURI[_tokenId] = _tokenURI;
+        emit TokenURIAdded(_tokenId, _tokenURI);
     }
 
     //TODO mint function
+    function mint(address _to, uint256 _tokenId ) public onlyOwner {
+        require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
+        require(_to == address(0), "Orcs: minting to zero address");
+        require(_owners[_tokenId] == address(0), "OrcsNFT: Token Already exist");
+        _balances[_to] += 1;
+        _owners[_tokenId] = _to;
+
+        emit Transfer(address(0), _to, _tokenId);
+    }
+
+    function burn(uint256 _tokenId) public {
+        address owner = _owners[_tokenId];
+        require(_owners[_tokenId] == msg.sender, "OrcsNFT: caller is not owner");
+
+        _balances[msg.sender] -= 1;
+        //_owner[_tokenId] = address(0);
+
+        delete _owners[_tokenId];
+
+        approve(address(0), _tokenId);
+
+        emit Transfer(owner,address(0), _tokenId);
+    }
+
     //TODO Access control
-    //TODO tokenURI: tokenId -> carachteristics (off-chain. uri/url)
+
+    
 
     function balanceOf(address _owner) public view returns (uint256){
         return _balances[_owner];
     }
 
-    function ownerOf(uint256 _tokenId) public view returns (address){
+    function ownerOf(uint256 _tokenId) public view returns (address owner){
         return _owners[_tokenId];
-        require(owner != address)
+
+        require(owner != address(0), "OrcsNFT: Token does not exist");
     }
 
     function getApproved(uint256 _tokenId) public view returns (address){

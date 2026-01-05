@@ -6,6 +6,27 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_symbol",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_initialOwner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -53,6 +74,25 @@
 					}
 				],
 				"name": "ApprovalForAll",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
 				"type": "event"
 			},
 			{
@@ -125,6 +165,19 @@
 						"type": "uint256"
 					}
 				],
+				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
 				"name": "getApproved",
 				"outputs": [
 					{
@@ -161,6 +214,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -168,6 +239,19 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -185,11 +269,18 @@
 				"outputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "owner",
 						"type": "address"
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -296,6 +387,19 @@
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -352,7 +456,7 @@
 						"_tokenId": "The identifier for an NFT"
 					},
 					"returns": {
-						"_0": "The address of the owner of the NFT"
+						"owner": "The address of the owner of the NFT"
 					}
 				},
 				"safeTransferFrom(address,address,uint256)": {
@@ -445,11 +549,19 @@
 			]
 		},
 		"contracts/OrcsNFT.sol": {
-			"keccak256": "0x2d9d4ce2ee761dd97364fe76228e381c9b528c79e57dc9f34908ded8e4de20f1",
+			"keccak256": "0x823f06e35ba6c811e1422193f834adf0ec4b40ec6e8002c35b304c2322ea39d8",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://0a82475dd05d81dba4ea2d4622e3c1db56d41e4c2cc68c04c59671563db0cd9d",
-				"dweb:/ipfs/QmafTwcVxG3k26rUqQqzRZoCQ18kKKJcoGc4eF4mF8tYvY"
+				"bzz-raw://5112ff554e337acdbca9ef155d9875041a19a7487f743aeb0708930bbae140dc",
+				"dweb:/ipfs/Qmd4RTPXnoHrBcYYpG2oZWxEmMWoTSW6xfEuymDcTva41J"
+			]
+		},
+		"contracts/Ownable.sol": {
+			"keccak256": "0x80e40aa58d38e9405bd72c8a0fb2a12888ff28fe297cf26fddd310c6e4ea3807",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b5080065083f4fcc1843e5769cc4a3485616ce3ae008ea87ebccf72035345287",
+				"dweb:/ipfs/QmXqykg1tSpm7RGZaeguPe4ukMggfYprnN3PeSVfAkympv"
 			]
 		}
 	},

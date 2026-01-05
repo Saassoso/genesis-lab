@@ -2,8 +2,9 @@
 pragma solidity ^0.8.30;
 
 import "contracts/Interface/ICyberorcs.sol";
+import "contracts/Ownable.sol";
 
-contract Cyberorcs is ICyberorcs {
+contract Cyberorcs is ICyberorcs, Ownable {
     //metadata
     string private NAME;
     string private SYMBOL;
@@ -18,7 +19,7 @@ contract Cyberorcs is ICyberorcs {
     mapping(address => uint256) private _balance;
     mapping(address => mapping(address => uint256)) private _allowance;
 
-    constructor(string memory name_, string memory symbol_, uint256 maxSupply_, address treasury) {
+    constructor(string memory name_, string memory symbol_, uint256 maxSupply_, address treasury) Ownable(msg.sender) {
         require(treasury != address(0), "Zero treasury");
         NAME = name_;
         SYMBOL = symbol_;
@@ -93,8 +94,8 @@ contract Cyberorcs is ICyberorcs {
     }
     
     // ---------------- Mint & Burn ----------------
-    function mint(address to, uint256 amount) public returns (bool) {
-        require(msg.sender == minter, "Cyberorcs: Access Denied");
+    function mint(address to, uint256 amount) public onlyOwner returns (bool sucess) {
+        //require(msg.sender == minter, "Cyberorcs: Access Denied");
         require(to != address(0), "Cyberorcs: Zero recipient");
         require(totalSupply + amount <= MAX_SUPPLY, "Cyberorcs: Max Supply");
 

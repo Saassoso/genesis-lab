@@ -62,6 +62,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -210,7 +229,7 @@
 				"outputs": [
 					{
 						"internalType": "bool",
-						"name": "",
+						"name": "sucess",
 						"type": "bool"
 					}
 				],
@@ -241,6 +260,26 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -334,16 +373,53 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
+			"events": {
+				"OwnershipTransferred(address,address)": {
+					"details": "This emits when ownership of a contract changes.    "
+				}
+			},
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"owner()": {
+					"returns": {
+						"_0": "The address of the owner."
+					}
+				},
+				"transferOwnership(address)": {
+					"details": "Set _newOwner to address(0) to renounce any ownership.",
+					"params": {
+						"_newOwner": "The address of the new owner of the contract    "
+					}
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"owner()": {
+					"notice": "Get the address of the owner    "
+				},
+				"transferOwnership(address)": {
+					"notice": "Set the address of the new owner of the contract"
+				}
+			},
 			"version": 1
 		}
 	},
@@ -364,11 +440,11 @@
 	},
 	"sources": {
 		"contracts/Cyberorcs.sol": {
-			"keccak256": "0x23bfa038c15e72ff76e53244385e403cb5fefc766cb6b3e927a4e8708ec52db0",
+			"keccak256": "0x0f3e79147fcfe33485ffb65d96ede63c721ffb5b9e4289345aa8ffb9edac62b8",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://a3be626cd65cee6ba4ea1be16e7bb8a2f4316643d4fe1ac109149f008b9180f3",
-				"dweb:/ipfs/QmbtqgwvaghVpML5MtKRadA2u9qGDFZ7dkdiTRJae6ymyM"
+				"bzz-raw://21b9eb3b3e665b72c89ef281f696f483ed02c1ad0a342f5980d3aeb1a3b5a67f",
+				"dweb:/ipfs/Qmeua7YBvQsP3LMQi7TJNQa2ShFf4TQ9JKYKnr1ecqDqGG"
 			]
 		},
 		"contracts/Interface/ICyberorcs.sol": {
@@ -377,6 +453,22 @@
 			"urls": [
 				"bzz-raw://70161ec845c75df476f7577fa528b5a6c1263b7a052760f09790b30db07675a6",
 				"dweb:/ipfs/QmR8R8PKmMkv11HA5eYG7tsXQrX5BpWNTLwVGHJvG4cQPu"
+			]
+		},
+		"contracts/Interface/IERC173.sol": {
+			"keccak256": "0x607ec6d96b9b1469ea3a9f06202e62c418bf7cee153b9c4aa2b3855dcfea30d8",
+			"license": "Apache 2.0",
+			"urls": [
+				"bzz-raw://a8bb271f622e597123a2b31b8ac8520dd7a703d6ef9d0ef4d96c71a365c19828",
+				"dweb:/ipfs/QmfCk6Enfpf3KArm6Hf29okh5zknhLpBkrwymxAgTGk4s1"
+			]
+		},
+		"contracts/Ownable.sol": {
+			"keccak256": "0xcf8b8789fce274a8a26cd830b5bef2a32b89fdac59897e266c3dea314538d620",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d3836c96f99f8d01253a39d21372789bfef41612065c0a55c191a210d8940622",
+				"dweb:/ipfs/QmQzgSUBAfnyNtFSdogWrWaSkyFh14DBAVSv8cEvAdq9XQ"
 			]
 		}
 	},

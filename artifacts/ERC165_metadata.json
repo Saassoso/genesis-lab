@@ -29,7 +29,7 @@
 			"kind": "dev",
 			"methods": {
 				"supportsInterface(bytes4)": {
-					"details": "Interface identification is specified in ERC-165. This function  uses less than 30,000 gas.",
+					"details": "Interface identification is specified in ERC-165. ",
 					"params": {
 						"interfaceID": "The interface identifier, as specified in ERC-165"
 					},
@@ -52,7 +52,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Interface/IOrcsNFT.sol": "ERC165"
+			"contracts/Interface/IERC173.sol": "ERC165"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -66,12 +66,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Interface/IOrcsNFT.sol": {
-			"keccak256": "0x284ea77ff96e880da66b128c0c3d7674e08d4d6efc1fed8afac270d258e92160",
-			"license": "IMT",
+		"contracts/Interface/IERC173.sol": {
+			"keccak256": "0x607ec6d96b9b1469ea3a9f06202e62c418bf7cee153b9c4aa2b3855dcfea30d8",
+			"license": "Apache 2.0",
 			"urls": [
-				"bzz-raw://561c7d9ef3417b6e2a6ba943cab29ca6e3b70c790b5da013fa9b96e702b29f4b",
-				"dweb:/ipfs/QmZyLaAa18r5sBq59JZdMNUC3mk45woe7BrRBTmdYWD6Gx"
+				"bzz-raw://a8bb271f622e597123a2b31b8ac8520dd7a703d6ef9d0ef4d96c71a365c19828",
+				"dweb:/ipfs/QmfCk6Enfpf3KArm6Hf29okh5zknhLpBkrwymxAgTGk4s1"
 			]
 		}
 	},

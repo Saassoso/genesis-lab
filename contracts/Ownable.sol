@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-abstract contract Ownable {
+import "contracts/Interface/IERC173.sol";
+
+abstract contract Ownable is ERC173 {
 
     address private _owner;
 
-    event OwnershipTransferred(address indexed oldOwner, address indexed newOwner);
+    //event OwnershipTransferred(address indexed oldOwner, address indexed newOwner);
 
-    constructor(){
+    constructor(address _initialOwner){
         //_owner = msg.sender;
         //emit OwnershipTransferred(address(0), _owner);
-        transferOwnership(msg.sender);
+        transferOwnership(_initialOwner);
     }
 
     function owner() public view returns (address){
@@ -32,5 +34,9 @@ abstract contract Ownable {
     function transferOwnership(address _newOwner) public onlyOwner {
         require(_newOwner != address(0), "Ownable: new owner is zero address");
         _transferOwnership(_newOwner);
+    }
+
+    function renounceOwnership() public onlyOwner {
+        _transferOwnership(address(0));
     }
 }

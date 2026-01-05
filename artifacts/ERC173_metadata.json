@@ -38,13 +38,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -78,6 +71,7 @@
 					}
 				}
 			},
+			"title": "ERC-173 Contract Ownership Standard  Note: the ERC-165 identifier for this interface is 0x7f5828d0",
 			"version": 1
 		},
 		"userdoc": {
@@ -95,7 +89,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Ownable.sol": "Ownable"
+			"contracts/Interface/IERC173.sol": "ERC173"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -115,14 +109,6 @@
 			"urls": [
 				"bzz-raw://a8bb271f622e597123a2b31b8ac8520dd7a703d6ef9d0ef4d96c71a365c19828",
 				"dweb:/ipfs/QmfCk6Enfpf3KArm6Hf29okh5zknhLpBkrwymxAgTGk4s1"
-			]
-		},
-		"contracts/Ownable.sol": {
-			"keccak256": "0xcf8b8789fce274a8a26cd830b5bef2a32b89fdac59897e266c3dea314538d620",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://d3836c96f99f8d01253a39d21372789bfef41612065c0a55c191a210d8940622",
-				"dweb:/ipfs/QmQzgSUBAfnyNtFSdogWrWaSkyFh14DBAVSv8cEvAdq9XQ"
 			]
 		}
 	},
