@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.30;
-
 import "contracts/Interface/IOrcsMarketplace.sol";
 import "contracts/Interface/ICyberorcs.sol";
 import "contracts/Interface/IOrcsNFT.sol";
@@ -38,34 +37,34 @@ contract OrcsMarketplace is IOrcsMarketplace {
             price: price,
             seller: msg.sender,
             status: Status.LISTED
-            });
+        });
 
         emit Listed(msg.sender, tokenId, price);
     }
 
     function cancel(uint256 tokenId) public {
         Listing memory listing = _listings[tokenId];
-        require(listing.status == LISTED, "OrcsMarketplace: not listed");
+        require(listing.status == Status.LISTED, "OrcsMarketplace: not listed");
         require(listing.seller == msg.sender, "OrcsMarketplace: caller is not the seller");
 
         delete _listings[tokenId];
 
-        emit Canceled(msg.sender, tokenId);
+        emit Cancelled(msg.sender, tokenId);
     }
 
     function buy(uint256 tokenId) public {
         Listing memory listing = _listings[tokenId];
-        require(listing.status == LISTED, "OrcsMarketplace: not listed");
+        require(listing.status == Status.LISTED, "OrcsMarketplace: not listed");
         require(listing.seller != msg.sender, "OrcsMarketplace: cannot buy Own Listing");
-        require(cyberOrcs.allowance(msg.send, address(this)) > listing.price, "OrcsMarketplace: not enough allowance");
+        require(cyberOrcs.allowance(msg.sender, address(this)) > listing.price, "OrcsMarketplace: not enough allowance");
 
         listing.status = Status.SOLD;
 
         orcsNFT.transferFrom(listing.seller, msg.sender, tokenId);
-        bool success = cyberOrcs.tranferFrom(msg.sender, listing.seller, listing.price);
+        bool success = cyberOrcs.transferFrom(msg.sender, listing.seller, listing.price);
         require(success, "OrcsMarketplace: payment failed");
 
-        emit Sold(msg.sender, tokenId);
+        emit Sold(msg.sender, listing.seller, tokenId, listing.price);
     } 
     function getListing(uint256 tokenId) external view returns (Listing memory) {
     Listing memory listing = _listings[tokenId];

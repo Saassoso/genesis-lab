@@ -141,7 +141,7 @@
 			],
 			"name": "buy",
 			"outputs": [],
-			"stateMutability": "payable",
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -178,6 +178,11 @@
 							"internalType": "address",
 							"name": "seller",
 							"type": "address"
+						},
+						{
+							"internalType": "enum IOrcsMarketplace.Status",
+							"name": "status",
+							"type": "uint8"
 						}
 					],
 					"internalType": "struct IOrcsMarketplace.Listing",

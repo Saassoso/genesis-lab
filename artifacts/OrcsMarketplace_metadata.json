@@ -1,0 +1,267 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_cyberOrcs",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_orcsNFT",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Cancelled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"name": "Listed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"name": "Sold",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "buy",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "cancel",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "cyberOrcs",
+				"outputs": [
+					{
+						"internalType": "contract ICyberorcs",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getListing",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "enum IOrcsMarketplace.Status",
+								"name": "status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct IOrcsMarketplace.Listing",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"name": "list",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "orcsNFT",
+				"outputs": [
+					{
+						"internalType": "contract IOrcsNFT",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/OrcsMarketplace.sol": "OrcsMarketplace"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Interface/ICyberorcs.sol": {
+			"keccak256": "0x50cd83dea45cac188a3a33d058ef9126c630448557b1643764fac4a8266c3194",
+			"license": "Apache 2.0",
+			"urls": [
+				"bzz-raw://70161ec845c75df476f7577fa528b5a6c1263b7a052760f09790b30db07675a6",
+				"dweb:/ipfs/QmR8R8PKmMkv11HA5eYG7tsXQrX5BpWNTLwVGHJvG4cQPu"
+			]
+		},
+		"contracts/Interface/IOrcsMarketplace.sol": {
+			"keccak256": "0xa70e3afd003948273f6a908c8e3623f3ee8924d0012bfa25f4e540f2bc1b1fbf",
+			"license": "IMT",
+			"urls": [
+				"bzz-raw://a2e09b2ba954f59ab44aa66dcfa8f74aaf0122c86831689c9a111618cc5a99a6",
+				"dweb:/ipfs/Qmaq5t9udbpYmC9Jg54opcY1VU8Dn5nS9A7Q5DdqqimWHE"
+			]
+		},
+		"contracts/Interface/IOrcsNFT.sol": {
+			"keccak256": "0x0f90204f735a4ba61dbfb3ef784074e01e082b3ad065301cd765f3a2cdc306bc",
+			"license": "IMT",
+			"urls": [
+				"bzz-raw://993dfd1005d6c9814d4fb34f7563284786c0f2e46e8abc9608e99798172d0b9e",
+				"dweb:/ipfs/QmTz1YbLTLwEn6DG7GwgjNjVT7afkAYL2Wm73zwucw3RKF"
+			]
+		},
+		"contracts/OrcsMarketplace.sol": {
+			"keccak256": "0x3f80ec4e884ecda9bb284e204c8953c3284f3b1cd9a3e8471370793cc190352e",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://f293132968ea3e525715a8daab8596706bc6bbf7f05a58937f21655d170444de",
+				"dweb:/ipfs/QmUa7NsaTWNfBCnKrhmpGKpvnCMzPCKKkK6fmr3jHACjhn"
+			]
+		}
+	},
+	"version": 1
+}

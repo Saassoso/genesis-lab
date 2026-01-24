@@ -90,7 +90,7 @@
 				],
 				"name": "buy",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -127,6 +127,11 @@
 								"internalType": "address",
 								"name": "seller",
 								"type": "address"
+							},
+							{
+								"internalType": "enum IOrcsMarketplace.Status",
+								"name": "status",
+								"type": "uint8"
 							}
 						],
 						"internalType": "struct IOrcsMarketplace.Listing",
@@ -184,11 +189,11 @@
 	},
 	"sources": {
 		"contracts/Interface/IOrcsMarketplace.sol": {
-			"keccak256": "0x386d3db5a662d736344bf4cef7dbc039cca0ae20c08fc08e4244ad4bb424168c",
+			"keccak256": "0xa70e3afd003948273f6a908c8e3623f3ee8924d0012bfa25f4e540f2bc1b1fbf",
 			"license": "IMT",
 			"urls": [
-				"bzz-raw://76c9b23ce8bce6473fe5ce7a9427de5c16fd2182cc8409c9de5d986f353ab9c6",
-				"dweb:/ipfs/QmbJnMgYZNWZWzKqjWzkrgJaMn7CrqDofJm1R2VFUX88Uo"
+				"bzz-raw://a2e09b2ba954f59ab44aa66dcfa8f74aaf0122c86831689c9a111618cc5a99a6",
+				"dweb:/ipfs/Qmaq5t9udbpYmC9Jg54opcY1VU8Dn5nS9A7Q5DdqqimWHE"
 			]
 		}
 	},
