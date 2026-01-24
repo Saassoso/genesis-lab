@@ -5,13 +5,15 @@ import "contracts/Interface/IOrcsNFT.sol";
 import "contracts/Interface/IMetadata.sol";
 import {IERC721Receiver} from "contracts/Interface/IERC721Receiver.sol";
 import "contracts/Ownable.sol";
-
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
+    using Strings for uint256;
 
     string public name; // function name() view external returns (string memory);
     string public symbol; // function symbol() view external returns (string memory);
     string public baseUri; // function baseUri() view external returns (string memory);
+    uint256 public constant MAX_TOKEN = 10000;
 
     mapping (address => uint256) public myBalances; //funtion myBalances(address owner ) view public (uint256);
     mapping (address => uint256) private _balances;
@@ -38,17 +40,13 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         //require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
         address owner = _owners[_tokenId];
         require(owner != address(0), "OrcsNFT: NFT Doeant Exist");
-        
-        return string.concat(
-            baseTokenURI,
-            Strings.toString(_tokenId)
-        );
+        return string(abi.encodePacked(baseUri, _tokenId.toString()));
     }
     
-
     event TokenURIAdded(uint256 _tokenId, string _tokenURI);
 
     function setTokenUri(uint256 _tokenId, string calldata _tokenURI) public onlyOwner {
+        require(_owners[_tokenId] != address(0), "OrcsNFT: NFT Does Not Exist");
         tokenURI[_tokenId] = _tokenURI;
         emit TokenURIAdded(_tokenId, _tokenURI);
     }
@@ -58,7 +56,9 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
         require(_to == address(0), "Orcs: minting to zero address");
         require(_owners[_tokenId] == address(0), "OrcsNFT: Token Already exist");
+
         _balances[_to] += 1;
+        myBalances[_to] = _balances[_to]; // Ask this was added
         _owners[_tokenId] = _to;
 
         emit Transfer(address(0), _to, _tokenId);
@@ -67,6 +67,7 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
     function burn(uint256 _tokenId) public {
         address owner = _owners[_tokenId];
         require(_owners[_tokenId] == msg.sender, "OrcsNFT: caller is not owner");
+        require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
 
         _balances[msg.sender] -= 1;
         //_owner[_tokenId] = address(0);
@@ -87,9 +88,9 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
     }
 
     function ownerOf(uint256 _tokenId) public view returns (address owner){
-        return _owners[_tokenId];
-
+        owner = _owners[_tokenId];
         require(owner != address(0), "OrcsNFT: Token does not exist");
+        return owner;
     }
 
     function getApproved(uint256 _tokenId) public view returns (address){
@@ -100,7 +101,7 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         return _approvedForAll[_owner][_operator];
     }
 
-    function approve(address _approved, uint256 _tokenId) external payable{
+    function approve(address _approved, uint256 _tokenId) public payable{
         address _owner = ownerOf(_tokenId);
         require(ownerOf(_tokenId) == msg.sender, "OrcsNFT: Not Owner");
         _operators[_tokenId] = _approved;
@@ -127,11 +128,12 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
 
     }
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) external payable{
+    function transferFrom(address _from, address _to, uint256 _tokenId) public payable override{
+        require(_owners[_tokenId] != address(0), "OrcsNFT: Token does not exist");
         _transfer(_from, _to, _tokenId);
     }
 
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public payable{
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public payable override {
         _transfer(_from, _to, _tokenId);
 
         if(_to.code.length > 0 ){
@@ -141,7 +143,14 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         }
     }
 
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public payable{
+    //1. Buyer is a smart contract calls buy funvtion on the marketpalce smart contract
+    //2. marketplace check the status is listed 
+    //3. marketplace interacts with OrcsNFT to execute safeTransferFrom
+    //4. OrcsNFT calls buyer (nftReceiver) and execute onERC721Received
+    //5. buyer smart contracy calls marketplace to execute buy functions again, inside onERC721Received fucntions
+    
+    // @inheritDoc IOrcsMArketplace
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public payable override {
         safeTransferFrom(_from, _to, _tokenId, "0x");
     }
 
