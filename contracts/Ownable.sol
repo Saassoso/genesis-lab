@@ -12,7 +12,9 @@ abstract contract Ownable is ERC173 {
     constructor(address _initialOwner){
         //_owner = msg.sender;
         //emit OwnershipTransferred(address(0), _owner);
-        transferOwnership(_initialOwner);
+        _owner = _initialOwner;
+        emit OwnershipTransferred(address(0), _initialOwner);
+        //transferOwnership(_initialOwner);
     }
 
     function owner() public view returns (address){

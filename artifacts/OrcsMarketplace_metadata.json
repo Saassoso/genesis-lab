@@ -255,11 +255,11 @@
 			]
 		},
 		"contracts/OrcsMarketplace.sol": {
-			"keccak256": "0x3f80ec4e884ecda9bb284e204c8953c3284f3b1cd9a3e8471370793cc190352e",
+			"keccak256": "0xfb2683675da8cdd4c1dda2a6e3f8c961ef66e6594aee410b02bfe4e0ac94e520",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://f293132968ea3e525715a8daab8596706bc6bbf7f05a58937f21655d170444de",
-				"dweb:/ipfs/QmUa7NsaTWNfBCnKrhmpGKpvnCMzPCKKkK6fmr3jHACjhn"
+				"bzz-raw://931bd14610c9cbcc43bf2e31866d09032cc0e71b7d8db55fdbfbde3154fb4386",
+				"dweb:/ipfs/QmZGp9WxFABCcjsWQi3gwaaj3ENbV1xa11sQYdLZzwPSNt"
 			]
 		}
 	},

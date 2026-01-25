@@ -53,10 +53,10 @@ contract OrcsMarketplace is IOrcsMarketplace {
     }
 
     function buy(uint256 tokenId) public {
-        Listing memory listing = _listings[tokenId];
+        Listing storage listing = _listings[tokenId];
         require(listing.status == Status.LISTED, "OrcsMarketplace: not listed");
         require(listing.seller != msg.sender, "OrcsMarketplace: cannot buy Own Listing");
-        require(cyberOrcs.allowance(msg.sender, address(this)) > listing.price, "OrcsMarketplace: not enough allowance");
+        require(cyberOrcs.allowance(msg.sender, address(this)) >= listing.price, "OrcsMarketplace: not enough allowance");
 
         listing.status = Status.SOLD;
 

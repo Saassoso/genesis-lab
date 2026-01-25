@@ -102,7 +102,7 @@ contract Cyberorcs is ICyberorcs, Ownable {
         _balance[to] += amount;
         totalSupply += amount;
 
-        emit Transfer(address(0), to, amount);
+        //emit Transfer(address(0), to, amount);
 
         return true;
     }
@@ -113,7 +113,7 @@ contract Cyberorcs is ICyberorcs, Ownable {
         _balance[msg.sender] -= amount;
         totalSupply -= amount;
 
-        emit Transfer(msg.sender, address(0), amount);
+        //emit Transfer(msg.sender, address(0), amount);
 
         return true;
     }

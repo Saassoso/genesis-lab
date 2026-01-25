@@ -118,11 +118,11 @@
 			]
 		},
 		"contracts/Ownable.sol": {
-			"keccak256": "0xcf8b8789fce274a8a26cd830b5bef2a32b89fdac59897e266c3dea314538d620",
+			"keccak256": "0xa72e296858d7b66cd6af4073429d4e06e08e460969ac640f2be6f4b4e28bfb78",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d3836c96f99f8d01253a39d21372789bfef41612065c0a55c191a210d8940622",
-				"dweb:/ipfs/QmQzgSUBAfnyNtFSdogWrWaSkyFh14DBAVSv8cEvAdq9XQ"
+				"bzz-raw://114cae55d259cc9a4a95b55a68479d3f390eea41a57bd2aa2f6556d39f3e1781",
+				"dweb:/ipfs/QmdJWiKeAW5df5o2LzjMQyEjDfrL1W9fi7zK6wUVsLPvLL"
 			]
 		}
 	},

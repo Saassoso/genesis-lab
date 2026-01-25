@@ -18,6 +18,11 @@
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "_baseUri",
+						"type": "string"
+					},
+					{
 						"internalType": "address",
 						"name": "_initialOwner",
 						"type": "address"
@@ -745,19 +750,19 @@
 			]
 		},
 		"contracts/OrcsNFT.sol": {
-			"keccak256": "0x9dc8541741c960ed894e4ab88cc0db1776638b24ab8a11d89e44df18b1b0daeb",
+			"keccak256": "0xeab0cba3f239388895acb8a3571c1bebb3de4795468e803a861cfb24dff78dc4",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://3627e5c5f92801be0adb14e43202e367faed4ba920507b981a2bb778e715da73",
-				"dweb:/ipfs/QmZAbKCtNfU9uXgtmdFiUhNSzTXC1k5ohntKABqExTUdu5"
+				"bzz-raw://6f731e4ab610f2a53937fa114540449cb50ca9295d6dfecac71ada883ac534df",
+				"dweb:/ipfs/QmP2SRszUoTfgRN2m4eM3bJJdjtmCmBKRki3KVCfPEZWPH"
 			]
 		},
 		"contracts/Ownable.sol": {
-			"keccak256": "0xcf8b8789fce274a8a26cd830b5bef2a32b89fdac59897e266c3dea314538d620",
+			"keccak256": "0xa72e296858d7b66cd6af4073429d4e06e08e460969ac640f2be6f4b4e28bfb78",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d3836c96f99f8d01253a39d21372789bfef41612065c0a55c191a210d8940622",
-				"dweb:/ipfs/QmQzgSUBAfnyNtFSdogWrWaSkyFh14DBAVSv8cEvAdq9XQ"
+				"bzz-raw://114cae55d259cc9a4a95b55a68479d3f390eea41a57bd2aa2f6556d39f3e1781",
+				"dweb:/ipfs/QmdJWiKeAW5df5o2LzjMQyEjDfrL1W9fi7zK6wUVsLPvLL"
 			]
 		}
 	},

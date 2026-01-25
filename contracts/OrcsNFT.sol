@@ -29,9 +29,11 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         return _approvedForAll[spender][owner];
     }*/
 
-    constructor (string memory _name, string memory _symbol,address _initialOwner) Ownable(_initialOwner) {
+    // FIXED: Added _baseUri to constructor so it can be set
+    constructor (string memory _name, string memory _symbol, string memory _baseUri, address _initialOwner) Ownable(_initialOwner) {
         name = _name;
         symbol = _symbol;
+        baseUri = _baseUri; // FIXED: Set the baseUri
     }
     
     //TODO tokenURI: tokenId -> carachteristics (off-chain. uri/url)\
@@ -40,6 +42,13 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         //require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
         address owner = _owners[_tokenId];
         require(owner != address(0), "OrcsNFT: NFT Doeant Exist");
+        
+        // FIXED: Check if a custom URI exists in the mapping first
+        string memory _customUri = tokenURI[_tokenId];
+        if (bytes(_customUri).length > 0) {
+            return _customUri;
+        }
+
         return string(abi.encodePacked(baseUri, _tokenId.toString()));
     }
     
@@ -54,7 +63,10 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
     //TODO mint function
     function mint(address _to, uint256 _tokenId ) public onlyOwner {
         require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
-        require(_to == address(0), "Orcs: minting to zero address");
+        
+        // FIXED: Changed == to != (You want to mint to a real address, not the zero address)
+        require(_to != address(0), "Orcs: minting to zero address"); 
+        
         require(_owners[_tokenId] == address(0), "OrcsNFT: Token Already exist");
 
         _balances[_to] += 1;
@@ -70,6 +82,9 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         require(_tokenId <= MAX_TOKEN, "OrcsNFT: NFT Doeant Exist");
 
         _balances[msg.sender] -= 1;
+        // FIXED: Update myBalances to keep it in sync
+        myBalances[msg.sender] = _balances[msg.sender];
+
         //_owner[_tokenId] = address(0);
 
         delete _owners[_tokenId];
@@ -103,13 +118,14 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
 
     function approve(address _approved, uint256 _tokenId) public payable{
         address _owner = ownerOf(_tokenId);
-        require(ownerOf(_tokenId) == msg.sender, "OrcsNFT: Not Owner");
+        // FIXED: Checks if msg.sender is owner OR is approved for all
+        require(msg.sender == _owner || isApprovedForAll(_owner, msg.sender), "OrcsNFT: Not Authorized");
         _operators[_tokenId] = _approved;
         emit Approval(_owner, _approved, _tokenId);
     }
 
     function setApprovalForAll(address _operator, bool _approved) external{
-        require(balanceOf(msg.sender) > 0, "OrcsNFT: No Balance");
+        // FIXED: Removed requirement for balance > 0 (Standard allows approval before minting)
         _approvedForAll[msg.sender][_operator] = _approved;
         emit ApprovalForAll(msg.sender, _operator, _approved);
     }
@@ -119,8 +135,14 @@ contract OrcsNFT is IOrcsNFT,IMetadata, Ownable {
         require(_from == _owner, "OrcsNFT: From not Owner");
         address _approved = getApproved(_tokenId);
         require(msg.sender == _owner || msg.sender == _approved || isApprovedForAll(_from, msg.sender), "OrcsNFT: From not authorized");
+        
         _balances[_from] -= 1;
         _balances[_to] += 1;
+        
+        // FIXED: Update myBalances for both parties
+        myBalances[_from] = _balances[_from];
+        myBalances[_to] = _balances[_to];
+
         _owners[_tokenId] = _to;
         _operators[_tokenId] = address(0);
 

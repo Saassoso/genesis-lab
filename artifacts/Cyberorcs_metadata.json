@@ -440,11 +440,11 @@
 	},
 	"sources": {
 		"contracts/Cyberorcs.sol": {
-			"keccak256": "0x0f3e79147fcfe33485ffb65d96ede63c721ffb5b9e4289345aa8ffb9edac62b8",
+			"keccak256": "0x1fc88079f5aec1e4a717e69bfdb7934fe91d58522628f78c68988aa79736e243",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://21b9eb3b3e665b72c89ef281f696f483ed02c1ad0a342f5980d3aeb1a3b5a67f",
-				"dweb:/ipfs/Qmeua7YBvQsP3LMQi7TJNQa2ShFf4TQ9JKYKnr1ecqDqGG"
+				"bzz-raw://230f24b27008e740146922a4a4743fb1228b277c5e95133bdb04a2981e43436d",
+				"dweb:/ipfs/QmcJKA6ekYVdaD6g8Rd4VFR5ZTMR9pwvHS7vHsZRB4hTbK"
 			]
 		},
 		"contracts/Interface/ICyberorcs.sol": {
@@ -464,11 +464,11 @@
 			]
 		},
 		"contracts/Ownable.sol": {
-			"keccak256": "0xcf8b8789fce274a8a26cd830b5bef2a32b89fdac59897e266c3dea314538d620",
+			"keccak256": "0xa72e296858d7b66cd6af4073429d4e06e08e460969ac640f2be6f4b4e28bfb78",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d3836c96f99f8d01253a39d21372789bfef41612065c0a55c191a210d8940622",
-				"dweb:/ipfs/QmQzgSUBAfnyNtFSdogWrWaSkyFh14DBAVSv8cEvAdq9XQ"
+				"bzz-raw://114cae55d259cc9a4a95b55a68479d3f390eea41a57bd2aa2f6556d39f3e1781",
+				"dweb:/ipfs/QmdJWiKeAW5df5o2LzjMQyEjDfrL1W9fi7zK6wUVsLPvLL"
 			]
 		}
 	},
